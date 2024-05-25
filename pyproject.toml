@@ -31,6 +31,7 @@ classifiers = [
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
   "Programming Language :: Python :: Implementation :: CPython",
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
@@ -72,6 +73,9 @@ version.source = "vcs"
 [tool.hatch.version.raw-options]
 local_scheme = "no-local-version"
 
+[tool.ruff]
+fix = true
+
 [tool.ruff.lint]
 select = [
   "C4", # flake8-comprehensions
@@ -100,3 +104,8 @@ required-imports = ["from __future__ import annotations"]
 
 [tool.pytest.ini_options]
 addopts = "--color=yes"
+filterwarnings = [
+  # Python <= 3.11
+  "ignore:sys.monitoring isn't available, using default core:coverage.exceptions.CoverageWarning",
+]
+testpaths = ["tests"]
